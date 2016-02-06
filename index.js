@@ -6,6 +6,7 @@ var self = require('sdk/self');
 var links = require('./lib/links').links;
 
 var worker = require('./lib/worker');
+var w;
 
 var	pulse;
 
@@ -25,9 +26,14 @@ function handleButton()
 	//	console.log('index: handling button');
 	//	linkExtractor.beginExtraction(groupId);
 		console.log('Starting pulse');
-		worker.init(self.data.url('delete.js'), deletePost);
-		timer.setTimeout(tryStart, 1000);
+		w = worker.open(self.data.url('delete.js'), loaded, progress, done);
+		//timer.setTimeout(tryStart, 1000);
 	//}
+}
+
+function loaded()
+{
+	w.set
 }
 
 function tryStart()
