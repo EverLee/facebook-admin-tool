@@ -1,6 +1,6 @@
 {
-  "title": "Facebook Post Deleter",
-  "name": "song",
+  "title": "Song's Facebook Admin Tool",
+  "name": "facebook-admin-tool",
   "version": "0.0.1",
   "description": "Deletes posts on Facebook",
   "main": "index.js",
