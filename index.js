@@ -3,7 +3,12 @@ var url = require('sdk/url');
 var timer = require('sdk/timers');
 var self = require('sdk/self');
 
-var links = require('./lib/links').links;
+var entry = require('sdk/panel').Panel({
+	contentURL: self.data.url('prompt/prompt.html'),
+	contentScriptFile: self.data.url('prompt/prompt.js')
+});
+
+var links;
 
 var worker = require('./lib/worker');
 
@@ -13,8 +18,22 @@ var button = require("sdk/ui/button/action").ActionButton({
 	id: "style-tab",
 	label: "Style Tab",
 	icon: "./icon-16.png",
-	onClick: handleButton
+	onClick: getLinks
 });
+
+function getLinks()
+{
+	entry.port.on('got-links', gotLinks);
+	entry.show();
+}
+
+function gotLinks(gottenLinks)
+{
+	entry.hide();
+	links = gottenLinks.split('\n');
+	links = links.filter(function(link) { return (link.length > 0); });
+	handleButton();
+}
 
 function handleButton()
 {
