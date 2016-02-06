@@ -1,0 +1,16 @@
+{
+  "title": "Facebook Post Deleter",
+  "name": "song",
+  "version": "0.0.1",
+  "description": "Deletes posts on Facebook",
+  "main": "index.js",
+  "author": "Song Taylor",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ]
+}
