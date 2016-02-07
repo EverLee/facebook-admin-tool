@@ -23,9 +23,9 @@ automatically open each URL and delete the post in it.
 
 This add-on is *not* a hack that lets you delete arbitrary posts. If you can't delete
 a post manually with the currently signed in account, then the add-on can't delete
-it automatically. So for example, if your friend makes a really embarassing post
+it automatically. So for example, if your friend makes a really embarrassing post
 about you, this tool can't delete it unless you can log into their account. Not even
-if it's *really* embarassing and you *really* want to delete it.
+if it's *really* embarrassing and you *really* want to delete it.
 
 # Note
 
