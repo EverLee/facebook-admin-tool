@@ -1,5 +1,3 @@
-var tabs = require("sdk/tabs");
-var url = require('sdk/url');
 var timer = require('sdk/timers');
 var self = require('sdk/self');
 
@@ -11,8 +9,6 @@ var entry = require('sdk/panel').Panel({
 var links;
 
 var worker = require('./lib/worker');
-
-var	pulse;
 
 var button = require("sdk/ui/button/action").ActionButton({
 	id: "style-tab",
@@ -37,16 +33,9 @@ function gotLinks(gottenLinks)
 
 function handleButton()
 {
-	//var groupId = extractGroupId(tabs.activeTab.url);
-
-	//if(groupId !== '')
-	//{
-	//	console.log('index: handling button');
-	//	linkExtractor.beginExtraction(groupId);
-		console.log('Starting pulse');
-		worker.init(self.data.url('delete.js'), deletePost);
-		timer.setTimeout(tryStart, 1000);
-	//}
+	console.log('Starting deleting');
+	worker.init(self.data.url('delete.js'), deletePost);
+	timer.setTimeout(tryStart, 1000);
 }
 
 function tryStart()
@@ -72,50 +61,5 @@ function deletePost()
 	else
 	{
 		console.log('Out of links');
-	}
-}
-
-function getPost()
-{
-	if (linkExtractor.linkAvailable())
-	{
-		console.log('index: pushed link');
-		links.push(linkExtractor.getLink());
-	}
-	else if (linkExtractor.isDone())
-	{
-		console.log('index: extraction done');
-		timer.clearInterval(pulse);
-		displayLinks();
-	}
-}
-
-function extractGroupId(href)
-{
-	var hostPattern = /^(www\.)?facebook\.com$/i;
-	var pathPattern = /^\/groups\/(\d+)\/$/i;
-
-	href = url.URL(href);
-
-	var host = href.host;
-	var path = href.pathname;
-	
-	if (!host || !path)
-	{
-		console.log('index: missing URL piece; assuming wrong page');
-		return '';
-	}
-
-	if (host.search(hostPattern) >= 0 &&
-		path.search(pathPattern) >= 0)
-	{
-		var match = pathPattern.exec(path);
-		console.log('index: extracted group id: ' + match[1]);
-		return match[1];
-	}
-	else
-	{
-		console.log('index: not on forsaleposts page');
-		return '';
 	}
 }
