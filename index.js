@@ -3,7 +3,13 @@ var self = require('sdk/self');
 
 var entry = require('sdk/panel').Panel({
 	contentURL: self.data.url('prompt/prompt.html'),
-	contentScriptFile: self.data.url('prompt/prompt.js')
+	contentScriptFile: self.data.url('prompt/prompt.js'),
+	position: {
+		top: 50,
+		bottom: 50,
+		left: 100,
+		right: 100
+	}
 });
 
 var links;
@@ -19,8 +25,9 @@ var button = require("sdk/ui/button/action").ActionButton({
 
 function getLinks()
 {
-	entry.port.on('got-links', gotLinks);
+	entry.port.on('ok-button', gotLinks);
 	entry.show();
+	entry.port.emit('prep', 'Enter a list of links, one per line', '');
 }
 
 function gotLinks(gottenLinks)

@@ -1,20 +1,21 @@
-// When the user hits return, send the "text-entered"
-// message to main.js.
-// The message payload is the contents of the edit box.
-var textArea = document.getElementById("edit-box");
-textArea.addEventListener('keyup', function onkeyup(event) {
-  if (event.keyCode == 13) {
-    // Remove the newline.
-    self.port.emit("got-links", textArea.value);
-    textArea.value = '';
-  }
-}, false);
-// Listen for the "show" event being sent from the
-// main add-on code. It means that the panel's about
-// to be shown.
-//
-// Set the focus to the text area so the user can
-// just start typing.
-self.port.on("show", function onShow() {
-  textArea.focus();
-});
+var textArea = document.getElementById('edit-box');
+var message = document.getElementById('message-box');
+
+self.port.on('prep', prep);
+document.getElementById('ok-button').onclick = okButton;
+
+function prep(msg, content)
+{
+	textArea.focus();
+	textArea.value = content;
+	message.innerHTML = msg;
+}
+
+function okButton()
+{
+	console.log('OK button clicked');
+	self.port.emit('ok-button', textArea.value);
+	textArea.value = 'Clicked!';
+}
+
+console.log('prompt.js loaded');
