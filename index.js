@@ -3,7 +3,6 @@ var self = require('sdk/self');
 
 var entry = require('sdk/panel').Panel({
 	contentURL: self.data.url('prompt/prompt.html'),
-	contentScriptFile: self.data.url('prompt/prompt.js'),
 	position: {
 		top: 50,
 		bottom: 50,

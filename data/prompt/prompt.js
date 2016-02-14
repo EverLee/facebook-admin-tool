@@ -1,7 +1,7 @@
 var textArea = document.getElementById('edit-box');
 var message = document.getElementById('message-box');
 
-self.port.on('prep', prep);
+addon.port.on('prep', prep);
 document.getElementById('ok-button').onclick = okButton;
 
 function prep(msg, content)
@@ -14,7 +14,7 @@ function prep(msg, content)
 function okButton()
 {
 	console.log('OK button clicked');
-	self.port.emit('ok-button', textArea.value);
+	addon.port.emit('ok-button', textArea.value);
 	textArea.value = 'Clicked!';
 }
 
