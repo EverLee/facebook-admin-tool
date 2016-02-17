@@ -1,5 +1,8 @@
 var timer = require('sdk/timers');
 var self = require('sdk/self');
+var worker = require('./lib/worker');
+
+var links;
 
 var entry = require('sdk/panel').Panel({
 	contentURL: self.data.url('prompt/prompt.html'),
@@ -10,10 +13,6 @@ var entry = require('sdk/panel').Panel({
 		right: 100
 	}
 });
-
-var links;
-
-var worker = require('./lib/worker');
 
 var button = require("sdk/ui/button/action").ActionButton({
 	id: "style-tab",
