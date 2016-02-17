@@ -26,6 +26,7 @@ var menu = require('sdk/panel').Panel({
 	position: button
 });
 
+entry.port.on('ok-button', handleLinks);
 menu.port.on('menu-delete', handleDelete);
 menu.port.on('menu-sold', handleSold);
 menu.port.on('menu-archived', handleArchived);
@@ -47,7 +48,6 @@ function handleArchived()
 
 function getLinks()
 {
-	entry.port.on('ok-button', handleLinks);
 	entry.show();
 	entry.port.emit('prep', 'Enter a list of links, one per line', '');
 }
