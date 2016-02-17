@@ -4,6 +4,13 @@ var worker = require('./lib/worker');
 
 var links;
 
+var button = require("sdk/ui/button/action").ActionButton({
+	id: "style-tab",
+	label: "Style Tab",
+	icon: "./icon-16.png",
+	onClick: getLinks
+});
+
 var entry = require('sdk/panel').Panel({
 	contentURL: self.data.url('prompt/prompt.html'),
 	position: {
@@ -12,13 +19,6 @@ var entry = require('sdk/panel').Panel({
 		left: 100,
 		right: 100
 	}
-});
-
-var button = require("sdk/ui/button/action").ActionButton({
-	id: "style-tab",
-	label: "Style Tab",
-	icon: "./icon-16.png",
-	onClick: getLinks
 });
 
 function getLinks()
