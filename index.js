@@ -23,12 +23,12 @@ var button = require("sdk/ui/button/action").ActionButton({
 
 function getLinks()
 {
-	entry.port.on('ok-button', gotLinks);
+	entry.port.on('ok-button', handleLinks);
 	entry.show();
 	entry.port.emit('prep', 'Enter a list of links, one per line', '');
 }
 
-function gotLinks(gottenLinks)
+function handleLinks(gottenLinks)
 {
 	entry.hide();
 	links = gottenLinks.split('\n');
