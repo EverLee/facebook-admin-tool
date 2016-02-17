@@ -57,12 +57,9 @@ function handleLinks(gottenLinks)
 	entry.hide();
 	links = gottenLinks.split('\n');
 	links = links.filter(function(link) { return (link.length > 0); });
-	handleButton();
-}
 
-function handleButton()
-{
 	console.log('Starting deleting');
+
 	worker.init(self.data.url('delete.js'), deletePost);
 	timer.setTimeout(tryStart, 1000);
 }
