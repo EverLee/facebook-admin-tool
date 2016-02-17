@@ -21,6 +21,11 @@ var entry = require('sdk/panel').Panel({
 	}
 });
 
+var menu = require('sdk/panel').Panel({
+	contentURL: self.data.url('menu/menu.html'),
+	position: button
+});
+
 function getLinks()
 {
 	entry.port.on('ok-button', handleLinks);
