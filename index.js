@@ -26,6 +26,25 @@ var menu = require('sdk/panel').Panel({
 	position: button
 });
 
+menu.port.on('menu-delete', handleDelete);
+menu.port.on('menu-sold', handleSold);
+menu.port.on('menu-archived', handleArchived);
+
+function handleDelete()
+{
+	console.log('Handling delete');
+}
+
+function handleSold()
+{
+	console.log('Handling sold');
+}
+
+function handleArchived()
+{
+	console.log('Handling archived');
+}
+
 function getLinks()
 {
 	entry.port.on('ok-button', handleLinks);
