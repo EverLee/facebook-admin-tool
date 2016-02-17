@@ -8,7 +8,7 @@ var button = require("sdk/ui/button/action").ActionButton({
 	id: "style-tab",
 	label: "Style Tab",
 	icon: "./icon-16.png",
-	onClick: getLinks
+	onClick: showMenu
 });
 
 var entry = require('sdk/panel').Panel({
@@ -50,6 +50,11 @@ function getLinks()
 {
 	entry.show();
 	entry.port.emit('prep', 'Enter a list of links, one per line', '');
+}
+
+function showMenu()
+{
+	menu.show();
 }
 
 function handleLinks(gottenLinks)
