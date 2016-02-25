@@ -1,5 +1,6 @@
 var timer = require('sdk/timers');
 var self = require('sdk/self');
+var tabs = require('sdk/tabs');
 var worker = require('./lib/worker');
 
 var links;
@@ -34,7 +35,7 @@ menu.port.on('menu-archived', handleArchived);
 function handleDelete()
 {
 	hideMenu();
-	console.log('Handling delete');
+	getLinks();
 }
 
 function handleSold()
