@@ -52,7 +52,12 @@ function handleSold()
 function handleArchived()
 {
 	hideMenu();
-	console.log('Handling archived');
+	tabs.activeTab.attach({
+		contentScriptFile: self.data.url('extractor.js'),
+		contentScriptOptions: {
+			check: '(ARCHIVED)'
+		}
+	});
 }
 
 function getLinks()
