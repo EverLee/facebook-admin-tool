@@ -41,7 +41,9 @@ function handleDelete()
 function handleSold()
 {
 	hideMenu();
-	console.log('Handling sold');
+	tabs.activeTab.attach({
+		contentScriptFile: self.data.url('extractor.js')
+	});
 }
 
 function handleArchived()
