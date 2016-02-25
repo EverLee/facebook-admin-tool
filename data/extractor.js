@@ -9,7 +9,9 @@ if (elems.length > 0)
 		return shouldKeep(item, self.options.check);
 	});
 	var links = extractLinks(elems);
-	document.body.innerHTML = links.join('<br>');
+
+	document.body.innerHTML = '<textarea rows="25" cols="75"></textarea>';
+	document.body.children[0].value = links.join('\n');
 }
 
 console.log('extractor: done');
