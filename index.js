@@ -33,16 +33,19 @@ menu.port.on('menu-archived', handleArchived);
 
 function handleDelete()
 {
-	getLinks();
+	hideMenu();
+	console.log('Handling delete');
 }
 
 function handleSold()
 {
+	hideMenu();
 	console.log('Handling sold');
 }
 
 function handleArchived()
 {
+	hideMenu();
 	console.log('Handling archived');
 }
 
@@ -56,6 +59,10 @@ function showMenu()
 {
 	menu.show();
 }
+
+function hideMenu()
+{
+	menu.hide();
 
 function handleLinks(gottenLinks)
 {
