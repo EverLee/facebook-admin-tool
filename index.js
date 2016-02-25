@@ -63,6 +63,7 @@ function showMenu()
 function hideMenu()
 {
 	menu.hide();
+}
 
 function handleLinks(gottenLinks)
 {
