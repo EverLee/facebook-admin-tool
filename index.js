@@ -33,7 +33,7 @@ menu.port.on('menu-archived', handleArchived);
 
 function handleDelete()
 {
-	console.log('Handling delete');
+	getLinks();
 }
 
 function handleSold()
