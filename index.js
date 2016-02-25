@@ -42,7 +42,10 @@ function handleSold()
 {
 	hideMenu();
 	tabs.activeTab.attach({
-		contentScriptFile: self.data.url('extractor.js')
+		contentScriptFile: self.data.url('extractor.js'),
+		contentScriptOptions: {
+			check: '(SOLD)'
+		}
 	});
 }
 

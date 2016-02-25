@@ -4,7 +4,10 @@ var elems = getElementsByIds(/mall_post_\d+/i, document.body);
 
 if (elems.length > 0)
 {
-	elems = elems.filter(isSoldPost);
+	elems = elems.filter(function(item)
+	{
+		return shouldKeep(item, self.options.check);
+	});
 	var links = extractLinks(elems);
 	document.body.innerHTML = links.join('<br>');
 }
@@ -27,12 +30,12 @@ function extractLinks(elems)
 	return links;
 }
 
-function isSoldPost(elem)
+function shouldKeep(elem, check)
 {
 	try
 	{
 		var target = elem.firstChild.children[1].firstChild.firstChild.firstChild.firstChild;
-		if (target.innerHTML === '(SOLD)')
+		if (target.innerHTML === check)
 		{
 			return true;
 		}
