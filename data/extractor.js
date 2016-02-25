@@ -6,7 +6,7 @@ if (elems.length > 0)
 {
 	elems = elems.filter(isSoldPost);
 	var links = extractLinks(elems);
-	document.innerHTML = links.join('\n');
+	document.body.innerHTML = links.join('<br>');
 }
 
 console.log('extractor: done');
