@@ -159,11 +159,12 @@ function getArrow()
 
 function getDeletePostButton()
 {
-	var elems = document.getElementsByTagName('span');
+	var elems = document.getElementsByTagName('div');
 
 	for (var index = 0; index < elems.length; index++)
 	{
-		if (elems[index].innerHTML === 'Delete Post')
+		if (elems[index].childNodes.length === 3 &&
+			elems[index].childNodes[2].nodeValue === 'Delete Post')
 		{
 			return elems[index];
 		}
