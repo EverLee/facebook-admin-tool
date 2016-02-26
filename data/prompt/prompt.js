@@ -8,7 +8,8 @@ function prep(msg, content)
 {
 	textArea.focus();
 	textArea.value = content;
-	message.innerHTML = msg;
+	var txt = document.createTextNode(msg);
+	message.appendChild(txt);
 }
 
 function okButton()
