@@ -10,8 +10,19 @@ if (elems.length > 0)
 	});
 	var links = extractLinks(elems);
 
-	document.body.innerHTML = '<textarea rows="25" cols="75"></textarea>';
-	document.body.children[0].value = links.join('\n');
+	var child = document.body.firstChild;
+
+	while (child)
+	{
+		document.body.removeChild(child);
+		child = document.body.firstChild;
+	}
+
+	var text = document.createElement('textarea');
+	text.value = links.join('\n');
+	text.rows = 25;
+	text.cols = 75;
+	document.body.appendChild(text);
 }
 
 console.log('extractor: done');
