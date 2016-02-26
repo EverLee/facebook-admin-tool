@@ -7,7 +7,7 @@ var links;
 
 var button = require("sdk/ui/button/action").ActionButton({
 	id: "style-tab",
-	label: "Style Tab",
+	label: "Song's Facebook Admin Tool",
 	icon: "./icon-16.png",
 	onClick: showMenu
 });
