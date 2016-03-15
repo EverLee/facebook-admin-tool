@@ -12,3 +12,8 @@ function extractArchived()
 {
 	addon.port.emit('menu-archived');
 }
+
+function extractOld()
+{
+	addon.port.emit('menu-old');
+}
