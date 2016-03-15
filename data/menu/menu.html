@@ -1,13 +1,10 @@
 <html>
 	<head>
 		<style type="text/css" media="all">
-			body
-			{
-				background-color: white;
-			}
 			li
 			{
-				padding: 20px;
+				padding: 5px;
+				font-size: 1.5em;
 				border: 1px solid blue;
 				border-radius: 25px;
 				list-style: none;
@@ -22,10 +19,10 @@
 	</head>
 	<body>
 		<ul>
-			<li onclick='deletePosts()'>Delete posts</li>
-			<li onclick='extractSold()'>Extract sold posts</li>
-			<li onclick='extractArchived()'>Extract archived posts (experimental)</li>
-			<li onclick='extractold()'>Extract old posts</li>
+			<li onclick='deletePosts()'>Delete extracted posts</li>
+			<li onclick='extractSold()'>Extract posts (sold)</li>
+			<li onclick='extractArchived()'>Extract posts (archived) (experimental)</li>
+			<li onclick='extractold()'>Extract posts (old)</li>
 		</ul>
 		<script src='menu.js'></script>
 	</body>
