@@ -10,7 +10,7 @@ function shouldExtract()
 	var availability = getAvailability(window.location.search);
 
 	if (isInvalidHost(window.location.hostname) ||
-		isInvalidPath(window.location.pathname) ||
+		isInvalidPathname(window.location.pathname) ||
 		isInvalidAvailability(availability)
 		)
 	{
