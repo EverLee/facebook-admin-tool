@@ -29,8 +29,7 @@ var menu = require('sdk/panel').Panel({
 
 entry.port.on('ok-button', handleLinks);
 menu.port.on('menu-delete', handleDelete);
-menu.port.on('menu-sold', handleSold);
-menu.port.on('menu-archived', handleArchived);
+menu.port.on('menu-extract', handleExtract);
 
 function handleDelete()
 {
@@ -38,14 +37,11 @@ function handleDelete()
 	getLinks();
 }
 
-function handleSold()
+function handleExtract()
 {
 	hideMenu();
 	tabs.activeTab.attach({
-		contentScriptFile: self.data.url('extractor.js'),
-		contentScriptOptions: {
-			check: '(SOLD)'
-		}
+		contentScriptFile: self.data.url('extractor.js')
 	});
 }
 
