@@ -1,17 +1,37 @@
 console.log('extractor: started');
-
-var elems = getElementsByIds(/mall_post_\d+/i, document.body);
-
-if (elems.length > 0)
+if (shouldExtract())
 {
-	elems = elems.filter(function(item)
+	extract();
+}
+console.log('extractor: done');
+
+function shouldExtract()
+{
+	var availability = getAvailability(window.location.search);
+
+	if (isInvalidHost(window.location.hostname) ||
+		isInvalidPath(window.location.pathname) ||
+		isInvalidAvailability(availability)
+		)
 	{
-		return shouldKeep(item, self.options.check);
-	});
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+function extract()
+{
+	var elems = getElementsByIds(/mall_post_\d+/i, document.body);
 	var links = extractLinks(elems);
+	showLinks(links);
+}
 
+function showLinks(links)
+{
 	var child = document.body.firstChild;
-
 	while (child)
 	{
 		document.body.removeChild(child);
@@ -25,10 +45,42 @@ if (elems.length > 0)
 	document.body.appendChild(text);
 }
 
-console.log('extractor: done');
+function isInvalidHost(host)
+{
+	return (host !== 'facebook.com' && host !== 'www.facebook.com');
+}
 
+function isInvalidPathname(path)
+{
+	return (path.search(/^\/groups\/\d+\/forsaleposts\/$/) === -1);
+}
 
+function isInvalidAvailability(availability)
+{
+	return (availability !== 'available' &&
+		availability !== 'archived' &&
+		availability !== 'sold');
+}
 
+function getAvailability(query)
+{
+	if (query[0] === '?')
+	{
+		query = query.slice(1);
+	}
+
+	var queryFragments = query.split('&');
+
+	for (var i = 0; i < queryFragments.length; i++)
+	{
+		if (queryFragments[i].search('availability=') === 0)
+		{
+			return queryFragments[i].split('=')[1];
+		}
+	}
+
+	return null;
+}
 
 function extractLinks(elems)
 {
@@ -41,26 +93,6 @@ function extractLinks(elems)
 	}
 
 	return links;
-}
-
-function shouldKeep(elem, check)
-{
-	try
-	{
-		var target = elem.firstChild.children[1].firstChild.firstChild.firstChild.firstChild;
-		if (target.innerHTML === check)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	catch (exc)
-	{
-		return false;
-	}
 }
 
 function getElementsByIds(pattern, root)
