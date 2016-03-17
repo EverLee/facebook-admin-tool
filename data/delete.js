@@ -175,17 +175,19 @@ function getDeletePostButton()
 
 function getDeleteButton()
 {
-	var content = /^Delete$/gi;
+	var deleteMessage = "Delete";
+	var noSoldMessage = "Haven't Sold";
+
 	var elems = document.getElementsByClassName('uiOverlayButton');
-	var delButton = null;
 
 	for (var index = 0; index < elems.length; index++)
 	{
-		if (elems[index].innerHTML.search(content) >= 0)
+		if (elems[index].innerHTML === deleteMessage ||
+			elems[index].innerHTML === noSoldMessage)
 		{
-			delButton = elems[index];
+			return elems[index];
 		}
 	}
 
-	return delButton;
+	return null;
 }
