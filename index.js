@@ -45,17 +45,6 @@ function handleExtract()
 	});
 }
 
-function handleArchived()
-{
-	hideMenu();
-	tabs.activeTab.attach({
-		contentScriptFile: self.data.url('extractor.js'),
-		contentScriptOptions: {
-			check: '(ARCHIVED)'
-		}
-	});
-}
-
 function getLinks()
 {
 	entry.show();
