@@ -1,49 +1,41 @@
-var stepPulse;
 var step = undefined;
+var prevStep = undefined;
+var isFinished = false;
 
-var tick = 0;
 var timeout = 120;
-var last = undefined;
+var tickInterval = 500;
 var monitorPulse = undefined;
 
-//self.port.on('delete-post', start);
 start();
 
 function start()
 {
 	console.log('delete: starting');
 	step = waitForLoad;
-	stepPulse = window.setInterval(doStep, 1000);
-	monitorPulse = window.setInterval(monitor, 1000);
+	doStep(0);
 }
 
-function monitor()
+function doStep(tick)
 {
-	if (last === step)
+	if (tick % 25 === 0)
 	{
-		tick++;
-
-		if (tick % 5 === 0)
-		{
-			console.log('delete: on tick ' + tick);
-		}
+		console.log('delete: waited ' + tick + '/' + timeout + ' ticks before timeout');
 	}
-	else
-	{
-		tick = 0;
-	}
-
-	if (tick > timeout)
+	if (tick > timeout && prevStep === step)
 	{
 		console.log('delete: timed out on page: ' + window.location.href);
 		step = done;
+		step();
+		return;
+	}
+	if (prevStep !== step)
+	{
+		prevStep = step;
 		tick = 0;
 	}
-}
 
-function doStep()
-{
 	step();
+	window.setTimeout(doStep, tickInterval, tick + 1);
 }
 
 function waitForLoad()
@@ -122,10 +114,12 @@ function clickDelete()
 
 function done()
 {
-	console.log('delete: done!');
-	window.clearInterval(stepPulse);
-	window.setTimeout(function() { self.port.emit('emit'); }, 2500);
-	self.port.emit('emit');
+	if (!isFinished)
+	{
+		isFinished = true;
+		console.log('delete: done!');
+		self.port.emit('emit');
+	}
 }
 
 function isDeleted()
