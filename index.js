@@ -1,6 +1,7 @@
 var timer = require('sdk/timers');
 var self = require('sdk/self');
 var tabs = require('sdk/tabs');
+var url = require('sdk/url');
 var worker = require('./lib/worker');
 
 var links;
@@ -65,12 +66,54 @@ function handleLinks(gottenLinks)
 {
 	entry.hide();
 	links = gottenLinks.split('\n');
-	links = links.filter(function(link) { return (link.length > 0); });
+	links = links.filter(isPermalink);
 
 	console.log('Starting deleting');
 
 	worker.init(self.data.url('delete.js'), deletePost);
 	timer.setTimeout(tryStart, 1000);
+}
+
+function isPermalink(href)
+{
+	console.log('testing ' + href);
+	try
+	{
+		var link = url.URL(href);
+		var protocolPattern = /^https:$/;
+		var hostPattern = /^www\.facebook\.com$/;
+		var pathPattern = /^\/groups\/\d+\/permalink\/\d+\/$/;
+		var queryPattern = /^$/;
+
+		if (protocolPattern.test(link.protocol) === false)
+		{
+			console.log('protocol fail');
+			return false;
+		}
+		if (hostPattern.test(link.host) === false)
+		{
+			console.log('host fail');
+			return false;
+		}
+		if (pathPattern.test(link.pathname) === false)
+		{
+			console.log('path fail');
+			return false;
+		}
+		if (queryPattern.test(link.search) === false)
+		{
+			console.log('query fail');
+			return false;
+		}
+		console.log('all passed');
+		return true;
+	}
+	catch (exc)
+	{
+		console.log('exception fail: ' + exc);
+		return false;
+	}
+	console.log('impossible fail');
 }
 
 function tryStart()
