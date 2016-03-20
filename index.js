@@ -68,10 +68,17 @@ function handleLinks(gottenLinks)
 	links = gottenLinks.split('\n');
 	links = links.filter(isPermalink);
 
-	console.log('Starting deleting');
+	if (links.length > 0)
+	{
+		console.log('Starting deleting');
 
-	worker.init(self.data.url('delete.js'), deletePost);
-	timer.setTimeout(tryStart, 1000);
+		worker.init(self.data.url('delete.js'), deletePost);
+		timer.setTimeout(tryStart, 1000);
+	}
+	else
+	{
+		console.log('No links passed the filter.');
+	}
 }
 
 function isPermalink(href)
