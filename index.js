@@ -31,6 +31,7 @@ var menu = require('sdk/panel').Panel({
 entry.port.on('ok-button', handleLinks);
 menu.port.on('menu-delete', handleDelete);
 menu.port.on('menu-extract', handleExtract);
+menu.port.on('menu-extract-old', handleExtractOld);
 
 function handleDelete()
 {
@@ -43,6 +44,14 @@ function handleExtract()
 	hideMenu();
 	tabs.activeTab.attach({
 		contentScriptFile: self.data.url('extractor.js')
+	});
+}
+
+function handleExtractOld(age)
+{
+	hideMenu();
+	tabs.activeTab.attach({
+		contentScriptFile: self.data.url('oldExtractor.js')
 	});
 }
 
