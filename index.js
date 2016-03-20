@@ -83,7 +83,6 @@ function handleLinks(gottenLinks)
 
 function isPermalink(href)
 {
-	console.log('testing ' + href);
 	try
 	{
 		var link = url.URL(href);
@@ -94,30 +93,24 @@ function isPermalink(href)
 
 		if (protocolPattern.test(link.protocol) === false)
 		{
-			console.log('protocol fail');
 			return false;
 		}
 		if (hostPattern.test(link.host) === false)
 		{
-			console.log('host fail');
 			return false;
 		}
 		if (pathPattern.test(link.pathname) === false)
 		{
-			console.log('path fail');
 			return false;
 		}
 		if (queryPattern.test(link.search) === false)
 		{
-			console.log('query fail');
 			return false;
 		}
-		console.log('all passed');
 		return true;
 	}
 	catch (exc)
 	{
-		console.log('exception fail: ' + exc);
 		return false;
 	}
 	console.log('impossible fail');
