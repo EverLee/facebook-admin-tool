@@ -43,7 +43,11 @@ function handleExtract()
 {
 	hideMenu();
 	tabs.activeTab.attach({
-		contentScriptFile: self.data.url('extractor.js')
+		contentScriptFile: [
+			self.data.url('extract/common.js'),
+			self.data.url('extract/special.js')
+		]
+
 	});
 }
 
@@ -51,7 +55,10 @@ function handleExtractOld(age)
 {
 	hideMenu();
 	tabs.activeTab.attach({
-		contentScriptFile: self.data.url('oldExtractor.js')
+		contentScriptFile: [
+			self.data.url('extract/common.js'),
+			self.data.url('extract/oldExtractor.js')
+		]
 	});
 }
 
