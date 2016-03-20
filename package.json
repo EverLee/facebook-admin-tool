@@ -1,7 +1,7 @@
 {
   "title": "Song's Facebook Admin Tool",
   "name": "facebook-admin-tool",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Deletes posts on Facebook",
   "main": "index.js",
   "author": "Song Taylor",
