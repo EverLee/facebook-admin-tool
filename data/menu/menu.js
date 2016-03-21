@@ -8,7 +8,7 @@ function extract()
 	addon.port.emit('menu-extract');
 }
 
-function extractold()
+function extractOld()
 {
 	var ageInput = document.getElementById('age');
 	if (!isNaN(parseFloat(ageInput.value))
