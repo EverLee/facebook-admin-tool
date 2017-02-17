@@ -6,7 +6,9 @@
 	"description": "Facebook Admin Tool",
 
 	"icons": {
-		"48": "icons/down.svg"
+		"16": "icons/icon-16.png",
+		"32": "icons/icon-32.png",
+		"64": "icons/icon-64.png"
 	},
 
 	"background": {
@@ -20,8 +22,9 @@
 	"browser_action": {
 		"browser_style": true,
 		"default_icon": {
-			"16": "icons/down.svg",
-			"32": "icons/down.svg"
+			"16": "icons/icon-16.png",
+			"32": "icons/icon-32.png",
+			"64": "icons/icon-64.png"
 		}
 	},
 
