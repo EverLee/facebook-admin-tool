@@ -1,3 +1,34 @@
+# Discontinued
+
+This add-on has been discontinued.
+
+## Why?
+### It's a pain
+
+Fixing a typo and verifying it worked took forever. The Add-on SDK involved restarting Firefox with a clean profile every time, which involved several minutes of waiting for loading and logging into Facebook again, just to find out I'd left off a semicolon and had to start all over again. This did not make Firefox an appealing environment.
+
+
+### Firefox is dropping support
+
+Mozilla announced they're dropping support for the Add-on SDK. Since the add-on can do approximately nothing without the Add-on SDK, the lack of support is mildly irritating.
+
+
+## Uninstalling the add-on
+
+To uninstall the add-on, go to the page [about:blank](about:blank) in Firefox, click the `Extensions` tab on the left, and click the `Remove` button next to the add-on's entry.
+
+
+## Moving on
+
+Most of the code was ripped out and stolen for the [Facebook Bot](https://github.com/Mirisong/Facebook-Bot). The Facebook Bot is built on Web-Extensions instead, which Firefox is aggressively promoting, so hopefully they won't abandon it for a while. It also has a nifty change watcher that automatically reloads the add-on without affecting Firefox at all, so changing stuff only takes a few seconds instead, which is quite a bit nicer.
+
+
+## Good riddance
+
+Some people dislike Web-Extensions' removal of some special features of the Add-on SDK and XUL based add-ons. I, however, am glad to be rid of it. Bye forever, Add-on SDK.
+
+
+
 # Song's Facebook Admin Tool
 
 A Firefox add-on that deletes Facebook posts in bulk.
