@@ -8,4 +8,4 @@ Scrolling down a long way into the feed will let it extract more at once.
 
 
 # Thanks
-The add-on's button icon is from Google Material Design.
+`/icons/down.svg` is from Google Material Design.
