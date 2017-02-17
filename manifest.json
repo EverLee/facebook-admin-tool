@@ -28,12 +28,6 @@
 		}
 	},
 
-	"applications": {
-		"gecko": {
-			"id": "mirisong.facebook.admin.tool@github.com"
-		}
-	},
-
 	"permissions": [
 		"https://www.facebook.com/groups/*/forsaleposts/*",
 		"https://www.facebook.com/groups/*/permalink/*"
