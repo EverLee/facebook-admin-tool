@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
-	"name": "Facebook Bot",
+	"name": "Facebook Admin Tool",
 	"version": "1.0",
 
-	"description": "Facebook Bot",
+	"description": "Facebook Admin Tool",
 
 	"icons": {
 		"48": "icons/down.svg"
@@ -27,7 +27,7 @@
 
 	"applications": {
 		"gecko": {
-			"id": "mirisong.facebook.bot@github.com"
+			"id": "mirisong.facebook.admin.tool@github.com"
 		}
 	},
 
