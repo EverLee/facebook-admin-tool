@@ -1,0 +1,38 @@
+{
+	"manifest_version": 2,
+	"name": "Facebook Bot",
+	"version": "1.0",
+
+	"description": "Facebook Bot",
+
+	"icons": {
+		"48": "icons/down.svg"
+	},
+
+	"background": {
+		"scripts": [
+			"/background/misc.js",
+			"/background/extractor.js",
+			"/background/deleter.js"
+		]
+	},
+
+	"browser_action": {
+		"browser_style": true,
+		"default_icon": {
+			"16": "icons/down.svg",
+			"32": "icons/down.svg"
+		}
+	},
+
+	"applications": {
+		"gecko": {
+			"id": "mirisong.facebook.bot@github.com"
+		}
+	},
+
+	"permissions": [
+		"https://www.facebook.com/groups/*/forsaleposts/*",
+		"https://www.facebook.com/groups/*/permalink/*"
+	]
+}
