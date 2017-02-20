@@ -61,7 +61,6 @@ function waitForDropdownOpened() {
 }
 
 function clickDeletePost() {
-	console.log('delete: clicking Delete Post button');
 	let deletePostButton = getDeletePostButton();
 	deletePostButton.click();
 	step = waitForDeleteAvailable;
