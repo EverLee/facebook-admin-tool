@@ -74,7 +74,6 @@ function waitForDeleteAvailable() {
 }
 
 function clickDelete() {
-	console.log('delete: deleting the post');
 	let deleteButton = getDeleteButton();
 	deleteButton.click();
 	step = done;
