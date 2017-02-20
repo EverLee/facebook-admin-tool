@@ -55,12 +55,7 @@ function openDropdown() {
 
 function waitForDropdownOpened() {
 	let delPostButton = getDeletePostButton();
-
-	if (delPostButton === null) {
-		console.log('delete: dropdown not open yet');
-	} 
-	else {
-		console.log('delete: dropdown opened');
+	if (delPostButton) {
 		step = clickDeletePost;
 	}
 }
