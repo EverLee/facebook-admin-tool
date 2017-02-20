@@ -16,15 +16,16 @@ function start() {
 }
 
 function doStep(tick) {
-	if (tick % 25 === 0) {
-		console.log('delete: waited ' + tick + '/' + timeout + ' ticks before timeout');
-	}
 	if (tick > timeout && prevStep === step) {
-		console.log('delete: timed out on page: ' + window.location.href);
 		step = done;
 		step();
 		return;
 	}
+
+	if (tick % 25 === 0) {
+		console.log('something is stalled... ' + tick + '/' + timeout);
+	}
+
 	if (prevStep !== step) {
 		prevStep = step;
 		tick = 0;
