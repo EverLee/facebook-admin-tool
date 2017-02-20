@@ -120,14 +120,20 @@ function getArrow() {
 function getDeletePostButton() {
 	let elems = document.getElementsByTagName('div');
 
-	for (let index = 0; index < elems.length; index++) {
-		if (elems[index].childNodes.length === 3 &&
-			elems[index].childNodes[2].nodeValue === 'Delete Post') {
-			return elems[index];
+	for (let elem of elems) {
+		if (isDeletePostButton(elem)) {
+			return elem;
 		}
 	}
 
 	return null;
+}
+
+function isDeletePostButton(elem) {
+	return (
+		elem.childNodes.length === 3 &&
+		elem.childNodes[2].nodeValue === 'Delete post')
+	);
 }
 
 function getDeleteButton() {
