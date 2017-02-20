@@ -94,11 +94,11 @@ function done() {
 }
 
 function isDeleted() {
+	let content = 'This post has been removed or could not be loaded.';
 	let elems = document.getElementsByTagName('div');
 
-	for (let index = 0; index < elems.length; index++) {
-		if (elems[index].innerHTML === 
-			'This post has been removed or could not be loaded.') {
+	for (let elem of elems) {
+		if (elem.innerHTML === content) {
 			return true;
 		}
 	}
