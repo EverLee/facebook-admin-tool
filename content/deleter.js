@@ -18,6 +18,16 @@ function timeoutMonitor() {
 	window.setTimeout(timeoutMonitor, timeout * tickInterval);
 }
 
+function deletedMonitor() {
+	let deleteMessage = getElement('div', isDeleteMessage);
+	if (deleteMessage) {
+		done();
+		return;
+	}
+
+	window.setTimeout(deletedMonitor, tickInterval);
+}
+
 function start() {
 	step = openMenu;
 	doStep(0);
@@ -38,12 +48,6 @@ function doStep(tick) {
 }
 
 function openMenu() {
-	let deleteMessage = getElement('div', isDeleteMessage);
-	if (deleteMessage) {
-		step = done;
-		return;
-	}
-
 	let arrow = getElement('a', isArrow);
 	if (arrow) {
 		arrow.click();
