@@ -144,13 +144,12 @@ function isDeleted()
 
 function getArrow()
 {
-	try
-	{
-		var ancestor = document.getElementsByClassName('fbUserContent')[0];
-		var arrow = ancestor.firstChild.firstChild.firstChild.firstChild;
-		return arrow;
+	let elems = document.getElementsByTagName('a');
+	for (let elem of elems) {
+		if (elem.getAttribute('aria-label') === 'Story options') {
+			return elem;
+		}
 	}
-	catch (err) { }
 
 	return null;
 }
