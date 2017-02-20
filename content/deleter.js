@@ -80,14 +80,17 @@ function clickDelete() {
 }
 
 function done() {
-	if (!isFinished) {
-		isFinished = true;
-		console.log('delete: done!');
-		browser.runtime.sendMessage({
-			to: "deleter",
-			body: window.location.href
-		});
+	// this may get called multiple times since the
+	// timer is still going
+	if (isFinished) {
+		return;
 	}
+
+	isFinished = true;
+	browser.runtime.sendMessage({
+		to: "deleter",
+		body: window.location.href
+	});
 }
 
 function isDeleted() {
