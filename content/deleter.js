@@ -1,10 +1,10 @@
-var step = undefined;
-var prevStep = undefined;
-var isFinished = false;
+let step = undefined;
+let prevStep = undefined;
+let isFinished = false;
 
-var timeout = 120;
-var tickInterval = 500;
-var monitorPulse = undefined;
+let timeout = 120;
+let tickInterval = 500;
+let monitorPulse = undefined;
 
 console.log("deleter injected");
 start();
@@ -41,7 +41,7 @@ function doStep(tick)
 
 function waitForLoad()
 {
-	var arrow = getArrow();
+	let arrow = getArrow();
 
 	if (isDeleted())
 	{
@@ -62,14 +62,14 @@ function waitForLoad()
 function openDropdown()
 {
 	console.log('delete: opening drop down');
-	var arrow = getArrow();
+	let arrow = getArrow();
 	arrow.click();
 	step = waitForDropdownOpened;
 }
 
 function waitForDropdownOpened()
 {
-	var delPostButton = getDeletePostButton();
+	let delPostButton = getDeletePostButton();
 
 	if (delPostButton === null)
 	{
@@ -85,14 +85,14 @@ function waitForDropdownOpened()
 function clickDeletePost()
 {
 	console.log('delete: clicking Delete Post button');
-	var deletePostButton = getDeletePostButton();
+	let deletePostButton = getDeletePostButton();
 	deletePostButton.click();
 	step = waitForDeleteAvailable;
 }
 
 function waitForDeleteAvailable()
 {
-	var deleteButton = getDeleteButton();
+	let deleteButton = getDeleteButton();
 
 	if (deleteButton === null)
 	{
@@ -108,7 +108,7 @@ function waitForDeleteAvailable()
 function clickDelete()
 {
 	console.log('delete: deleting the post');
-	var deleteButton = getDeleteButton();
+	let deleteButton = getDeleteButton();
 	deleteButton.click();
 	step = done;
 }
@@ -128,9 +128,9 @@ function done()
 
 function isDeleted()
 {
-	var elems = document.getElementsByTagName('div');
+	let elems = document.getElementsByTagName('div');
 
-	for (var index = 0; index < elems.length; index++)
+	for (let index = 0; index < elems.length; index++)
 	{
 		if (elems[index].innerHTML === 
 			'This post has been removed or could not be loaded.')
@@ -156,9 +156,9 @@ function getArrow()
 
 function getDeletePostButton()
 {
-	var elems = document.getElementsByTagName('div');
+	let elems = document.getElementsByTagName('div');
 
-	for (var index = 0; index < elems.length; index++)
+	for (let index = 0; index < elems.length; index++)
 	{
 		if (elems[index].childNodes.length === 3 &&
 			elems[index].childNodes[2].nodeValue === 'Delete Post')
@@ -172,12 +172,12 @@ function getDeletePostButton()
 
 function getDeleteButton()
 {
-	var deleteMessage = "Delete";
-	var noSoldMessage = "Haven't Sold";
+	let deleteMessage = "Delete";
+	let noSoldMessage = "Haven't Sold";
 
-	var elems = document.getElementsByClassName('uiOverlayButton');
+	let elems = document.getElementsByClassName('uiOverlayButton');
 
-	for (var index = 0; index < elems.length; index++)
+	for (let index = 0; index < elems.length; index++)
 	{
 		if (elems[index].innerHTML === deleteMessage ||
 			elems[index].innerHTML === noSoldMessage)
