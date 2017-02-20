@@ -4,7 +4,6 @@ let isFinished = false;
 
 let timeout = 120;
 let tickInterval = 500;
-let monitorPulse = undefined;
 
 console.log("deleter injected");
 start();
