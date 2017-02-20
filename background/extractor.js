@@ -11,9 +11,20 @@ function extractPosts() {
 		"file": "/content/extractor.js"
 	});
 	response.then(
-		function(){ /* ignore */ },
-		function(reason) { console.log("can not inject on this page: " + reason); }
+		unhookListener,
+		extractorInjectFailed
 	);
+}
+
+function unhookListener() {
+	if (browser.runtime.onMessage.hasListener(appendLinks)) {
+		browser.runtime.onMessage.removeListener(appendLinks);
+	}
+}
+
+function extractorInjectFailed(reason) {
+	console.log("can not inject on this page: " + reason);
+	unhookListener();
 }
 
 function appendLinks(message) {
