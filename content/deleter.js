@@ -1,11 +1,22 @@
-let step = undefined;
+let step = openMenu;
 let prevStep = undefined;
 let isFinished = false;
 
 let timeout = 120;
 let tickInterval = 500;
 
+timeoutMonitor();
 start();
+
+function timeoutMonitor() {
+	if (step === prevStep) {
+		done(); // give up
+		return;
+	}
+
+	prevStep = step;
+	window.setTimeout(timeoutMonitor, timeout * tickInterval);
+}
 
 function start() {
 	step = openMenu;
@@ -13,12 +24,6 @@ function start() {
 }
 
 function doStep(tick) {
-	if (tick > timeout && prevStep === step) {
-		step = done;
-		step();
-		return;
-	}
-
 	if (tick % 25 === 0) {
 		console.log('something is stalled... ' + tick + '/' + timeout);
 	}
