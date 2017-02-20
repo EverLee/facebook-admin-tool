@@ -48,7 +48,6 @@ function waitForLoad() {
 }
 
 function openDropdown() {
-	console.log('delete: opening drop down');
 	let arrow = getArrow();
 	arrow.click();
 	step = waitForDropdownOpened;
