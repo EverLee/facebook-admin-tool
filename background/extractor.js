@@ -21,7 +21,7 @@ function appendLinks(message) {
 		browser.runtime.onMessage.removeListener(appendLinks);
 
 		let newPermalinks = message.body.filter(isPermalink);
-		permalinks = permalinks.concat(newPermalinks);
+		permalinks = newPermalinks;
 		console.log("" + permalinks.length + " permalinks extracted");
 		deletePosts();
 	}

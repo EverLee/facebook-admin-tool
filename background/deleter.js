@@ -9,6 +9,7 @@ function cancelDelete() {
 			},
 			cleanup
 		);
+	}
 }
 
 function deletePosts() {

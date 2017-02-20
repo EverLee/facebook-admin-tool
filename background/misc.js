@@ -4,6 +4,7 @@ browser.runtime.onInstalled.addListener(onUpdated);
 
 function handleButton() {
 	if (permalinks.length > 0) {
+		permalinks = [];
 		cancelDelete();
 	}
 	else {
