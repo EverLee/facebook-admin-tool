@@ -68,12 +68,7 @@ function clickDeletePost() {
 
 function waitForDeleteAvailable() {
 	let deleteButton = getDeleteButton();
-
-	if (deleteButton === null) {
-		console.log('delete: dialog not open yet');
-	}
-	else {
-		console.log('delete: dialog opened');
+	if (deleteButton) {
 		step = clickDelete
 	}
 }
