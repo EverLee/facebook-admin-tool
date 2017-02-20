@@ -5,11 +5,9 @@ let isFinished = false;
 let timeout = 120;
 let tickInterval = 500;
 
-console.log("deleter injected");
 start();
 
 function start() {
-	console.log('delete: starting');
 	step = openMenu;
 	doStep(0);
 }
