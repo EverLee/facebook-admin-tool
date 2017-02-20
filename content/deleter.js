@@ -36,17 +36,13 @@ function doStep(tick) {
 }
 
 function waitForLoad() {
-	let arrow = getArrow();
-
 	if (isDeleted()) {
-		console.log('delete: post already deleted');
 		step = done;
+		return;
 	}
-	else if (arrow === null) {
-		console.log('delete: page not loaded yet');
-	}
-	else {
-		console.log('delete: page loaded');
+
+	let arrow = getArrow();
+	if (arrow) {
 		step = openDropdown;
 	}
 }
