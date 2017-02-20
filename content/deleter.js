@@ -6,6 +6,7 @@ let timeout = 120;
 let tickInterval = 500;
 
 timeoutMonitor();
+deletedMonitor();
 start();
 
 function timeoutMonitor() {
