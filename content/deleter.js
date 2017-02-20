@@ -119,7 +119,6 @@ function getArrow() {
 
 function getDeletePostButton() {
 	let elems = document.getElementsByTagName('div');
-
 	for (let elem of elems) {
 		if (isDeletePostButton(elem)) {
 			return elem;
@@ -137,17 +136,22 @@ function isDeletePostButton(elem) {
 }
 
 function getDeleteButton() {
-	let deleteMessage = "Delete";
-	let noSoldMessage = "Haven't Sold";
-
-	let elems = document.getElementsByClassName('uiOverlayButton');
-
-	for (let index = 0; index < elems.length; index++) {
-		if (elems[index].innerHTML === deleteMessage ||
-			elems[index].innerHTML === noSoldMessage) {
-			return elems[index];
+	let elems = document.getElementsByTagName('button');
+	for (let elem of elems) {
+		if (isDeleteButton(elem)) {
+			return elem;
 		}
 	}
 
 	return null;
+}
+
+function isDeleteButton(elem) {
+	let deleteMessage = "Delete";
+	let noSoldMessage = "Haven't Sold";
+
+	return (
+		elem.innerHTML === deleteMessage ||
+		elem.innerHTML === noSoldMessage
+	);
 }
