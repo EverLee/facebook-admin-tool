@@ -1,5 +1,16 @@
 let tab = false;
 
+function cancelDelete() {
+	if (tab) {
+		let closing = browser.tabs.remove(tab.id);
+		closing.then(
+			function() {
+				cleanup("user cancelled");
+			},
+			cleanup
+		);
+}
+
 function deletePosts() {
 	if (permalinks.length === 0) {
 		cleanup("normal exit");
