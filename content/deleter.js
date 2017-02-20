@@ -102,7 +102,8 @@ function isArrow(elem) {
 function isDeletePostOption(elem) {
 	return (
 		elem.childNodes.length === 3 &&
-		elem.childNodes[2].nodeValue === 'Delete post'
+		elem.childNodes[2].nodeValue &&
+		elem.childNodes[2].nodeValue.toUpper() === 'DELETE POST'
 	);
 }
 
