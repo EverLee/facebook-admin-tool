@@ -32,7 +32,7 @@ doStep(0);
 
 function timeoutMonitor() {
 	if (step === prevStep) {
-		done(); // give up
+		cleanup();
 		return;
 	}
 
@@ -43,7 +43,7 @@ function timeoutMonitor() {
 function deletedMonitor() {
 	let deleteMessage = getElement('div', isDeleteMessage);
 	if (deleteMessage) {
-		done();
+		cleanup();
 		return;
 	}
 
@@ -52,7 +52,7 @@ function deletedMonitor() {
 
 function doStep(tick) {
 	if (currentStep === null) {
-		done();
+		cleanup();
 		return;
 	}
 
@@ -70,7 +70,7 @@ function doStep(tick) {
 	window.setTimeout(doStep, tickInterval, tick + 1);
 }
 
-function done() {
+function cleanup() {
 	// this may get called multiple times since the
 	// timer is still going
 	if (isFinished) {
