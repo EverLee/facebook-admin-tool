@@ -1,13 +1,34 @@
-let step = openMenu;
-let prevStep = undefined;
-let isFinished = false;
-
 let timeout = 120;
 let tickInterval = 500;
 
+let steps = {
+	'openMenu' : {
+		stepName : 'openMenu',
+		className: 'a',
+		predicate: isArrow,
+		nextStep : 'clickDeletePost'
+	},
+	'clickDeletePost' : {
+		stepName : 'clickDeletePost',
+		className: 'div',
+		predicate: isDeletePostOption,
+		nextStep : 'clickDelete'
+	},
+	'clickDelete' : {
+		stepName : 'clickDelete',
+		className: 'button',
+		predicate: isDeleteButton,
+		nextStep : null
+	}
+};
+
+let currentStep = steps['openMenu'];
+let prevStep = undefined;
+let isFinished = false;
+
 timeoutMonitor();
 deletedMonitor();
-start();
+doStep(0);
 
 function timeoutMonitor() {
 	if (step === prevStep) {
@@ -29,47 +50,24 @@ function deletedMonitor() {
 	window.setTimeout(deletedMonitor, tickInterval);
 }
 
-function start() {
-	step = openMenu;
-	doStep(0);
-}
-
 function doStep(tick) {
-	if (tick % 25 === 0) {
-		console.log('something is stalled... ' + tick + '/' + timeout);
+	if (currentStep === null) {
+		done();
+		return;
 	}
 
-	if (prevStep !== step) {
-		prevStep = step;
+	if (tick % 25 === 0 && tick > 0) {
+		console.log(`${currentStep.stepName} has used ${tick} ticks`);
+	}
+
+	let element = getElement(currentStep.className, currentStep.predicate)
+	if (element) {
+		element.click();
+		currentStep = steps[currentStep.nextStep];
 		tick = 0;
 	}
 
-	step();
 	window.setTimeout(doStep, tickInterval, tick + 1);
-}
-
-function openMenu() {
-	let arrow = getElement('a', isArrow);
-	if (arrow) {
-		arrow.click();
-		step = clickDeletePostOption;
-	}
-}
-
-function clickDeletePostOption() {
-	let deletePostOption = getElement('div', isDeletePostOption);
-	if (deletePostOption) {
-		deletePostOption.click();
-		step = clickDeleteButton;
-	}
-}
-
-function clickDeleteButton() {
-	let deleteButton = getElement('button', isDeleteButton);
-	if (deleteButton) {
-		deleteButton.click();
-		step = done;
-	}
 }
 
 function done() {
