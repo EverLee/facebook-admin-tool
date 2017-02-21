@@ -18,8 +18,9 @@ let steps = {
 		stepName : "clickDelete",
 		className: "button",
 		predicate: isDeleteButton,
-		nextStep : null
-	}
+		nextStep : "done"
+	},
+	"done" : null
 };
 
 let currentStep = steps["openMenu"];
@@ -114,7 +115,7 @@ function isDeleteMessage(elem) {
 
 function isArrow(elem) {
 	let attribute = "Story options";
-	return (caseInsensitiveEqual(elem.getAttribute("aria-label"), attribute);
+	return (caseInsensitiveEqual(elem.getAttribute("aria-label"), attribute));
 }
 
 function isDeletePostOption(elem) {
