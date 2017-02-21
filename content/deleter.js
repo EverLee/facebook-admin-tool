@@ -2,27 +2,27 @@ let timeout = 120;
 let tickInterval = 500;
 
 let steps = {
-	'openMenu' : {
-		stepName : 'openMenu',
-		className: 'a',
+	"openMenu" : {
+		stepName : "openMenu",
+		className: "a",
 		predicate: isArrow,
-		nextStep : 'clickDeletePost'
+		nextStep : "clickDeletePost"
 	},
-	'clickDeletePost' : {
-		stepName : 'clickDeletePost',
-		className: 'div',
+	"clickDeletePost" : {
+		stepName : "clickDeletePost",
+		className: "div",
 		predicate: isDeletePostOption,
-		nextStep : 'clickDelete'
+		nextStep : "clickDelete"
 	},
-	'clickDelete' : {
-		stepName : 'clickDelete',
-		className: 'button',
+	"clickDelete" : {
+		stepName : "clickDelete",
+		className: "button",
 		predicate: isDeleteButton,
 		nextStep : null
 	}
 };
 
-let currentStep = steps['openMenu'];
+let currentStep = steps["openMenu"];
 let prevStep = undefined;
 let isFinished = false;
 
@@ -31,17 +31,17 @@ deletedMonitor();
 doStep(0);
 
 function timeoutMonitor() {
-	if (step === prevStep) {
+	if (currentStep === prevStep) {
 		cleanup();
 		return;
 	}
 
-	prevStep = step;
+	prevStep = currentStep;
 	window.setTimeout(timeoutMonitor, timeout * tickInterval);
 }
 
 function deletedMonitor() {
-	let deleteMessage = getElement('div', isDeleteMessage);
+	let deleteMessage = getElement("div", isDeleteMessage);
 	if (deleteMessage) {
 		cleanup();
 		return;
@@ -95,20 +95,34 @@ function getElement(tagName, predicate) {
 	return null;
 }
 
+function caseInsensitiveEqual(a, b) {
+	if (a === b) {
+		return true;
+	}
+
+	if (!a || !b) {
+		return false;
+	}
+
+	return (a.toUpperCase() === b.toUpperCase());
+}
+
 function isDeleteMessage(elem) {
-	let content = 'This post has been removed or could not be loaded.';
-	return (elem.innerHTML === content);
+	let content = "This post has been removed or could not be loaded.";
+	return (caseInsensitiveEqual(elem.innerHTML, content));
 }
 
 function isArrow(elem) {
-	return (elem.getAttribute('aria-label') === 'Story options');
+	let attribute = "Story options";
+	return (caseInsensitiveEqual(elem.getAttribute("aria-label"), attribute);
 }
 
 function isDeletePostOption(elem) {
+	let nodeValue = "Delete Post";
 	return (
 		elem.childNodes.length === 3 &&
 		elem.childNodes[2].nodeValue &&
-		elem.childNodes[2].nodeValue.toUpper() === 'DELETE POST'
+		caseInsensitiveEqual(elem.childNodes[2].nodeValue, nodeValue)
 	);
 }
 
@@ -117,7 +131,7 @@ function isDeleteButton(elem) {
 	let noSoldMessage = "Haven't Sold";
 
 	return (
-		elem.innerHTML === deleteMessage ||
-		elem.innerHTML === noSoldMessage
+		caseInsensitiveEqual(elem.innerHTML, deleteMessage) ||
+		caseInsensitiveEqual(elem.innerHTML, noSoldMessage)
 	);
 }
